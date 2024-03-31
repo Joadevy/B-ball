@@ -1,15 +1,14 @@
-type League = {
+type Country = {
   id: number;
   name: string;
-  country: string;
-  logo: string;
+  code: string;
   flag: string;
-  season: number;
-  standings: any[]; // Reemplaza 'any' con el tipo de datos correcto si es conocido
 };
 
-type LeagueData = {
-  league: League;
+export type Team = {
+  id: number;
+  name: string;
+  national: boolean;
+  logo: string | null;
+  country: Country;
 };
-
-export type LeagueArray = LeagueData[];
