@@ -9,10 +9,7 @@ type Props = {
 
 const TeamCard = ({ team }: Props) => {
   return (
-    <Link
-      href={`/${team.name}`}
-      className="hover:opacity-75 transition-opacity"
-    >
+    <Link href={`/${team.id}`} className="hover:opacity-75 transition-opacity">
       <Card className="flex flex-col gap-2 items-center">
         <CardTitle className="">{team.name}</CardTitle>
         <CardContent>

@@ -1,5 +1,6 @@
 import TeamCard from '@/components/TeamCard/TeamCard';
 import { Team } from '../../types';
+import teams from '../lib/nba-data.json' assert { type: 'json' };
 
 type season = '2024-2025' | '2023-2024' | '2022-2023';
 
@@ -46,9 +47,11 @@ const getNbaTeams = async (season: season, leagueId: string) => {
 };
 
 export default async function Home() {
-  const NbaTeams: Team[] = (await getNbaTeams(getActualSeason(), '12')).filter(
-    (team) => team.name !== 'West' && team.name !== 'East',
-  );
+  console.log(teams);
+  const NbaTeams: Team[] = teams;
+  // const NbaTeams: Team[] = (await getNbaTeams(getActualSeason(), '12')).filter(
+  //   (team) => team.name !== 'West' && team.name !== 'East',
+  // );
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between px-24 py-10">
