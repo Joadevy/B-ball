@@ -1,6 +1,7 @@
 import React from 'react';
 import { Game } from '../../../types';
 import { Card } from '../ui/card';
+import { CalendarDays } from 'lucide-react';
 
 type Props = {
   game: Game;
@@ -23,13 +24,16 @@ const GameCard = ({ game }: Props) => {
             </div>
           ) : null}
 
-          {new Date(game.date).toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            timeZone: 'UTC',
-          })}
+          <div className="flex gap-2 items-center">
+            <CalendarDays />
+            {new Date(game.date).toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              timeZone: 'UTC',
+            })}
+          </div>
         </div>
       </Card>
     </li>

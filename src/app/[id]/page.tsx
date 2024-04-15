@@ -1,12 +1,14 @@
 import React from 'react';
-import { Game } from '../../../types';
+import { Game, TeamData } from '../../../types';
 import GameCard from '@/components/GameCard/GameCard';
 import PreviousGames from './components/PreviousGames';
+import { isDate } from 'util/types';
+import { isDateFromString } from '@/lib/utils';
+import FutureGames from './components/FutureGames';
 
 export const getDateWithDaysAgoFormatYYYYMMDD = (daysAgo: number) => {
   const date = new Date();
   date.setUTCDate(date.getUTCDate() - daysAgo);
-  console.log('date', date);
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -16,13 +18,17 @@ export const getDateWithDaysAgoFormatYYYYMMDD = (daysAgo: number) => {
   }`;
 };
 
-export const getNextMatchesOf = async (
+export const getMatchesOfTeamIdFromTo = async (
   teamId: string,
   sinceDate: string,
   toDate?: string,
 ) => {
-  console.log(sinceDate);
-  const schedule = await fetch(
+  const schedule: {
+    data: Game[];
+    meta: {
+      per_page: number;
+    };
+  } = await fetch(
     `${process.env.API_URL}/games?team_ids[]=${teamId}&start_date=${sinceDate}` +
       (toDate ? `&end_date=${toDate}` : ''),
     {
@@ -36,6 +42,17 @@ export const getNextMatchesOf = async (
   return schedule.data;
 };
 
+const getTeamInfo = async (teamId: string) => {
+  const team = await fetch(`${process.env.API_URL}/teams/${teamId}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `${process.env.API_KEY}`,
+    },
+  }).then((res) => res.json());
+
+  return team;
+};
+
 const page = async ({
   params,
   searchParams,
@@ -43,21 +60,20 @@ const page = async ({
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  const schedule: Game[] = await getNextMatchesOf(
-    params.id,
-    getDateWithDaysAgoFormatYYYYMMDD(0),
-  );
+  const { data: teamInfo }: { data: TeamData } = await getTeamInfo(params.id);
+
+  console.log(teamInfo);
 
   return (
     <>
-      <div>
-        <h1>Next games</h1>
-        <ul className="grid grid-cols-3 gap-4">
-          {schedule.map((game) => (
-            <GameCard key={game.id} game={game} />
-          ))}
-        </ul>
-      </div>
+      <header>
+        <h1 className="text-3xl text-center font-extrabold">
+          {teamInfo.full_name}
+        </h1>
+      </header>
+
+      {/* @ts-expect-error Async Server Component */}
+      <FutureGames teamId={params.id} />
 
       {/* @ts-expect-error Async Server Component */}
       <PreviousGames teamId={params.id} sinceDaysAgo={7} />
