@@ -27,3 +27,13 @@ export type Game = {
   home_team: TeamAPI;
   visitor_team: TeamAPI;
 };
+
+export type TeamData = {
+  id: number;
+  conference: string;
+  division: string;
+  city: string;
+  name: string;
+  full_name: string;
+  abbreviation: string;
+};
