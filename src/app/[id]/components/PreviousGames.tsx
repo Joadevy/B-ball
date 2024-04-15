@@ -1,6 +1,9 @@
 import GameCard from '@/components/GameCard/GameCard';
 import React from 'react';
-import { getDateWithDaysAgoFormatYYYYMMDD, getNextMatchesOf } from '../page';
+import {
+  getDateWithDaysAgoFormatYYYYMMDD,
+  getMatchesOfTeamIdFromTo,
+} from '../page';
 import { Game } from '../../../../types';
 
 type Props = {
@@ -9,11 +12,12 @@ type Props = {
 };
 
 const PreviousGames = async ({ teamId, sinceDaysAgo }: Props) => {
-  const schedule: Game[] = await getNextMatchesOf(
+  const schedule: Game[] = await getMatchesOfTeamIdFromTo(
     teamId,
     getDateWithDaysAgoFormatYYYYMMDD(sinceDaysAgo),
-    getDateWithDaysAgoFormatYYYYMMDD(1),
-  );
+    getDateWithDaysAgoFormatYYYYMMDD(0),
+  ).then((games) => games.filter((game) => game.status === 'Final').reverse());
+
   return (
     <div>
       <h1>Previous games</h1>
