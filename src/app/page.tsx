@@ -47,18 +47,17 @@ const getNbaTeams = async (season: season, leagueId: string) => {
 };
 
 export default async function Home() {
-  console.log(teams);
   const NbaTeams: Team[] = teams;
   // const NbaTeams: Team[] = (await getNbaTeams(getActualSeason(), '12')).filter(
   //   (team) => team.name !== 'West' && team.name !== 'East',
   // );
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between px-24 py-10">
+    <main className="flex min-h-screen flex-col items-center justify-between py-10">
       <h1 className="text-4xl font-bold bg-gradient bg-350 bg-0 pb-20 text-gradient">
-        NBA Teams
+        NBA SQUADS
       </h1>
-      <section className="flex gap-2 flex-wrap">
+      <section className="flex gap-4 flex-wrap items-center justify-center">
         {NbaTeams.map((team: Team) => (
           <TeamCard key={team.id} team={team} />
         ))}
