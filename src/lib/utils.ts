@@ -15,3 +15,13 @@ export const getActualDate_YYYY_MM_DD = () => {
     day < 10 ? `0${day}` : day
   }`;
 };
+
+export function isDateFromString(dateString: string) {
+  if (typeof dateString !== 'string') {
+    return false;
+  }
+
+  const date = new Date(dateString);
+  console.log({ date });
+  return !isNaN(date.getTime());
+}
