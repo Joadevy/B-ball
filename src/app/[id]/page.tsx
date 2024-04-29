@@ -62,8 +62,6 @@ const page = async ({
 }) => {
   const { data: teamInfo }: { data: TeamData } = await getTeamInfo(params.id);
 
-  console.log(teamInfo);
-
   return (
     <>
       <header>

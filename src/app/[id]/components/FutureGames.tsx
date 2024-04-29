@@ -10,17 +10,18 @@ import { Game } from '../../../../types';
 const FutureGames = async ({ teamId }: { teamId: string }) => {
   const todayAndFutureGames: Game[] = await getMatchesOfTeamIdFromTo(
     teamId,
-    getDateWithDaysAgoFormatYYYYMMDD(0),
+    getDateWithDaysAgoFormatYYYYMMDD(1),
+  );
+  console.log(todayAndFutureGames);
+
+  const nextGames = todayAndFutureGames.filter(
+    (game) =>
+      isDateFromString(game.status) ||
+      (game.time !== null && game.time !== 'Final'),
   );
 
-  const nextGames = todayAndFutureGames.filter((game) =>
-    isDateFromString(game.status),
-  );
-
-  // const liveGame = todayAndFutureGames.filter(
-  //   (game) => game.status === 'Live',
-  // );
-
+  // console.log({ nextGamess });
+  const liveGame = todayAndFutureGames.filter((game) => game.time !== null);
   return (
     <div>
       <h2>Next games</h2>
