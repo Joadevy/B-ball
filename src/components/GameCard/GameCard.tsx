@@ -10,17 +10,17 @@ type Props = {
 const GameCard = ({ game }: Props) => {
   return (
     <li>
-      <Card>
+      <Card className="h-24 p-2 relative">
+        {game.time && game.time != 'Final' ? (
+          <div className="border rounded-md px-2 py-1 border-orange-400 absolute top-1 right-0">
+            Live - {game.time}
+          </div>
+        ) : null}
         {game.visitor_team.full_name} vs {game.home_team.full_name}
         <div>
-          {game.status === 'Final' ? (
+          {game.status === 'Final' || game.time ? (
             <div>
               {game.visitor_team_score} - {game.home_team_score}
-              {/* {game.visitor_team_score > game.home_team_score ? (
-                <div>{game.visitor_team.full_name} won!</div>
-              ) : (
-                <div>{game.home_team.full_name} won!</div>
-              )} */}
             </div>
           ) : null}
 
