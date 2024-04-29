@@ -22,6 +22,5 @@ export function isDateFromString(dateString: string) {
   }
 
   const date = new Date(dateString);
-  console.log({ date });
   return !isNaN(date.getTime());
 }
