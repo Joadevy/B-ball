@@ -48,9 +48,6 @@ const getNbaTeams = async (season: season, leagueId: string) => {
 
 export default async function Home() {
   const NbaTeams: Team[] = teams;
-  // const NbaTeams: Team[] = (await getNbaTeams(getActualSeason(), '12')).filter(
-  //   (team) => team.name !== 'West' && team.name !== 'East',
-  // );
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-10">
