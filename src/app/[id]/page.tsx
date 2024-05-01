@@ -74,7 +74,7 @@ const page = async ({
       <FutureGames teamId={params.id} />
 
       {/* @ts-expect-error Async Server Component */}
-      <PreviousGames teamId={params.id} sinceDaysAgo={7} />
+      <PreviousGames teamId={params.id} sinceDaysAgo={14} />
     </>
   );
 };

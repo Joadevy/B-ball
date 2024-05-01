@@ -12,7 +12,6 @@ const FutureGames = async ({ teamId }: { teamId: string }) => {
     teamId,
     getDateWithDaysAgoFormatYYYYMMDD(1),
   );
-  console.log(todayAndFutureGames);
 
   const nextGames = todayAndFutureGames.filter(
     (game) =>
@@ -20,8 +19,6 @@ const FutureGames = async ({ teamId }: { teamId: string }) => {
       (game.time !== null && game.time !== 'Final'),
   );
 
-  // console.log({ nextGamess });
-  const liveGame = todayAndFutureGames.filter((game) => game.time !== null);
   return (
     <div>
       <h2>Next games</h2>
