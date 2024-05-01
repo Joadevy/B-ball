@@ -7,7 +7,13 @@ import {
 import { isDateFromString } from '@/lib/utils';
 import { Game } from '../../../../types';
 
-const FutureGames = async ({ teamId }: { teamId: string }) => {
+const FutureGames = async ({
+  teamId,
+  countGamesPerTeam,
+}: {
+  teamId: string;
+  countGamesPerTeam?: Map<string, number>;
+}) => {
   const todayAndFutureGames: Game[] = await getMatchesOfTeamIdFromTo(
     teamId,
     getDateWithDaysAgoFormatYYYYMMDD(1),
@@ -24,7 +30,11 @@ const FutureGames = async ({ teamId }: { teamId: string }) => {
       <h2>Next games</h2>
       <ul className="grid grid-cols-3 gap-4">
         {nextGames.map((game) => (
-          <GameCard key={game.id} game={game} />
+          <GameCard
+            countGamesPerTeam={countGamesPerTeam}
+            key={game.id}
+            game={game}
+          />
         ))}
       </ul>
     </div>

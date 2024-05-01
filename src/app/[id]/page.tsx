@@ -1,10 +1,5 @@
-import React from 'react';
 import { Game, TeamData } from '../../../types';
-import GameCard from '@/components/GameCard/GameCard';
-import PreviousGames from './components/PreviousGames';
-import { isDate } from 'util/types';
-import { isDateFromString } from '@/lib/utils';
-import FutureGames from './components/FutureGames';
+import Games from './components/Games';
 
 export const getDateWithDaysAgoFormatYYYYMMDD = (daysAgo: number) => {
   const date = new Date();
@@ -71,10 +66,7 @@ const page = async ({
       </header>
 
       {/* @ts-expect-error Async Server Component */}
-      <FutureGames teamId={params.id} />
-
-      {/* @ts-expect-error Async Server Component */}
-      <PreviousGames teamId={params.id} sinceDaysAgo={14} />
+      <Games teamId={params.id} />
     </>
   );
 };

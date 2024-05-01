@@ -18,7 +18,7 @@ const GameCard = ({ game, countGamesPerTeam }: Props) => {
           </div>
         ) : null}
         {game.postseason ? (
-          <div className="border rounded-md px-2 py-1 border-orange-400 absolute top-1 right-0">
+          <div className="mx-2 text-orange-400 absolute bottom-1 right-0">
             Postseason
           </div>
         ) : null}
