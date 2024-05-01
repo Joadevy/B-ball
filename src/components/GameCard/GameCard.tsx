@@ -24,12 +24,15 @@ const GameCard = ({ game, countGamesPerTeam }: Props) => {
         ) : null}
         {game.visitor_team.full_name +
           (game.postseason &&
-          countGamesPerTeam?.has(String(game.visitor_team.id))
+          countGamesPerTeam?.has(String(game.visitor_team.id)) &&
+          countGamesPerTeam?.has(String(game.home_team.id))
             ? ` (${countGamesPerTeam.get(String(game.visitor_team.id))}) `
             : ' ')}
         vs{' '}
         {game.home_team.full_name +
-          (game.postseason && countGamesPerTeam?.has(String(game.home_team.id))
+          (game.postseason &&
+          countGamesPerTeam?.has(String(game.home_team.id)) &&
+          countGamesPerTeam?.has(String(game.visitor_team.id))
             ? ` (${countGamesPerTeam.get(String(game.home_team.id))}) `
             : ' ')}
         <div>
