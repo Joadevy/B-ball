@@ -1,6 +1,7 @@
 import TeamCard from '@/components/TeamCard/TeamCard';
 import { Team } from '../../types';
 import teams from '../lib/nba-data.json' assert { type: 'json' };
+import { caveat } from './layout';
 
 type season = '2024-2025' | '2023-2024' | '2022-2023';
 
@@ -51,7 +52,12 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-10">
-      <h1 className="text-4xl font-bold bg-gradient bg-350 bg-0 pb-20 text-gradient">
+      <h1
+        className={
+          caveat.className +
+          ' text-6xl font-extrabold bg-gradient bg-350 bg-0 pb-20 text-gradient'
+        }
+      >
         NBA SQUADS
       </h1>
       <section className="flex gap-4 flex-wrap items-center justify-center">
