@@ -1,5 +1,6 @@
 import { Game, TeamData } from '../../../types';
 import Games from './components/Games';
+import { caveat } from '../layout';
 
 export const getDateWithDaysAgoFormatYYYYMMDD = (daysAgo: number) => {
   const date = new Date();
@@ -58,16 +59,18 @@ const page = async ({
   const { data: teamInfo }: { data: TeamData } = await getTeamInfo(params.id);
 
   return (
-    <>
+    <div className="py-5 px-5">
       <header>
-        <h1 className="text-3xl text-center font-extrabold">
+        <h1
+          className={caveat.className + ' text-5xl text-center font-extrabold'}
+        >
           {teamInfo.full_name}
         </h1>
       </header>
 
       {/* @ts-expect-error Async Server Component */}
       <Games teamId={params.id} />
-    </>
+    </div>
   );
 };
 
