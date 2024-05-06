@@ -27,16 +27,20 @@ const FutureGames = async ({
 
   return (
     <div>
-      <h2>Next games</h2>
-      <ul className="grid grid-cols-3 gap-4">
-        {nextGames.map((game) => (
-          <GameCard
-            countGamesPerTeam={countGamesPerTeam}
-            key={game.id}
-            game={game}
-          />
-        ))}
-      </ul>
+      <h2 className="font-extrabold text-lg">Next games</h2>
+      {nextGames.length === 0 ? (
+        <p className="italic opacity-75">No games scheduled</p>
+      ) : (
+        <ul className="grid grid-cols-3 gap-4">
+          {nextGames.map((game) => (
+            <GameCard
+              countGamesPerTeam={countGamesPerTeam}
+              key={game.id}
+              game={game}
+            />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -10,7 +10,7 @@ type Props = {
   teamId: string;
 };
 
-const sinceDaysAgo = 14;
+export const sinceDaysAgo = 14;
 
 const Games = async ({ teamId }: Props) => {
   const pastGames: Game[] = await getMatchesOfTeamIdFromTo(
@@ -62,12 +62,12 @@ const Games = async ({ teamId }: Props) => {
   );
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
       {/* @ts-expect-error Async Server Component */}
       <FutureGames countGamesPerTeam={countGamesPerTeam} teamId={teamId} />
       {/* @ts-expect-error Async Server Component */}
       <PreviousGames previousGames={pastGames} />
-    </>
+    </div>
   );
 };
 
