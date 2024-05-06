@@ -22,14 +22,15 @@ const Games = async ({ teamId }: Props) => {
   const postSeasonPastGames = pastGames.filter((game) => game.postseason);
   const hasPostSeasonGames = postSeasonPastGames.length > 0;
 
-  const LastPostSeasonTeamIds = hasPostSeasonGames && [
-    postSeasonPastGames[0]?.visitor_team.id,
-    postSeasonPastGames[0]?.home_team.id,
-  ];
+  const LastPostSeasonTeamIds = hasPostSeasonGames
+    ? [
+        postSeasonPastGames[0]?.visitor_team.id,
+        postSeasonPastGames[0]?.home_team.id,
+      ]
+    : [];
 
-  const countGamesPerTeam =
-    hasPostSeasonGames &&
-    postSeasonPastGames.reduce((acc: Map<string, number>, game: Game) => {
+  const countGamesPerTeam = postSeasonPastGames.reduce(
+    (acc: Map<string, number>, game: Game) => {
       if (
         game.visitor_team_score === null ||
         game.home_team_score === null ||
@@ -54,7 +55,11 @@ const Games = async ({ teamId }: Props) => {
         );
       }
       return acc;
-    }, new Map<string, number>(LastPostSeasonTeamIds.map((teamId) => [String(teamId), 0])));
+    },
+    new Map<string, number>(
+      LastPostSeasonTeamIds.map((teamId) => [String(teamId), 0]),
+    ),
+  );
 
   return (
     <>
