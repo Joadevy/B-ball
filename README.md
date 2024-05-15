@@ -1,3 +1,3 @@
 ## B-BALL!
 
-Coming in some day because I dont have enough time :'( (and the nba is in playoffs stage) 
+Coming soon... Im kidding, just some day because I dont have enough time :'( (and the nba is in playoffs stage) 
