@@ -68,7 +68,6 @@ const page = async ({
         </h1>
       </header>
 
-      {/* @ts-expect-error Async Server Component */}
       <Games teamId={params.id} />
     </div>
   );
